@@ -6,7 +6,7 @@
     version="2.0">
     
     <xsl:strip-space elements="*"/>    
-    <!--<xsl:output method="xhtml" indent="yes"></xsl:output>-->    
+    <xsl:output method="xhtml" indent="yes"></xsl:output>    
     
     <xsl:template match="node()|@*">
         <xsl:copy>
