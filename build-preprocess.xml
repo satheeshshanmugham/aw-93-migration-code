@@ -1,0 +1,103 @@
+<?xml version = "1.0"?>
+<project name="AirWatch Migration" default="all" basedir=".">
+    <property file="build.properties"/>
+    
+   
+    
+    <target name="all"
+        depends="
+        fix_note_label_htm, fix_important_label_htm, fix_caution_label_htm,
+        fix_note_label_flsnp, fix_important_label_flsnp, fix_caution_label_flsnp,
+        fix_nested_snippets, copy_and_read_toc, preprocess_fltoc, 
+        copy_variable_definitions, copy_csh_map "/>
+    
+    <!--<target name="all"
+        depends="fix_nested_snippets"/>-->
+    
+    
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="${basedir}/ant-lib/ant-contrib-1.0b3.jar"/>
+        </classpath>
+    </taskdef>
+    
+    <target name="fix_note_label_htm">
+        <replace dir="Content" value="&lt;b&gt;Note:&lt;/b&gt;">
+            <include name="**/*.htm"/>
+            <replacetoken>&lt;b&gt;Note&lt;/b&gt;:</replacetoken>
+        </replace>
+    </target>
+    
+    <target name="fix_note_label_flsnp">
+        <replace dir="Content" value="&lt;b&gt;Note:&lt;/b&gt;">
+            <include name="**/*.flsnp"/>
+            <replacetoken>&lt;b&gt;Note&lt;/b&gt;:</replacetoken>
+        </replace>
+    </target>
+    
+    <target name="fix_important_label_htm">
+        <replace dir="Content" value="&lt;b&gt;Important:&lt;/b&gt;">
+            <include name="**/*.htm"/>
+            <replacetoken>&lt;b&gt;Important&lt;/b&gt;:</replacetoken>
+        </replace>
+    </target>
+    
+    <target name="fix_important_label_flsnp">
+        <replace dir="Content" value="&lt;b&gt;Important:&lt;/b&gt;">
+            <include name="**/*.flsnp"/>
+            <replacetoken>&lt;b&gt;Important&lt;/b&gt;:</replacetoken>
+        </replace>
+    </target>
+    
+    <target name="fix_caution_label_htm">
+        <replace dir="Content" value="&lt;b&gt;Caution:&lt;/b&gt;">
+            <include name="**/*.htm"/>
+            <replacetoken>&lt;b&gt;Caution&lt;/b&gt;:</replacetoken>
+        </replace>
+    </target>
+    
+    <target name="fix_caution_label_flsnp">
+        <replace dir="Content" value="&lt;b&gt;Caution:&lt;/b&gt;">
+            <include name="**/*.flsnp"/>
+            <replacetoken>&lt;b&gt;Caution&lt;/b&gt;:</replacetoken>
+        </replace>
+    </target>
+    
+    <target name="fix_nested_snippets">
+        <xslt failonerror="no"		 	
+            basedir="Content/Resources/Snippets" includes="**/*.flsnp"
+            destdir="Content/Resources/Snippets-test"
+            style="update_nested_conrefs.xsl"
+        />
+        
+        <move todir="Content/Resources/Snippets-test/" includeemptydirs="false">
+            <fileset dir="Content/Resources/Snippets-test/">
+                <include name="**/*.html"/>
+            </fileset>
+            <mapper type="glob" from="*.html" to="*.flsnp"/>
+        </move>
+        
+    </target>
+    
+    <target name="copy_and_read_toc">
+        
+        <copy file="Project/TOCs/Build Copy of Help TOC.fltoc" tofile="target/${deliverable_folder}-temp.fltoc"></copy>
+        
+        <xslt in="target/${deliverable_folder}-temp.fltoc" out="target/files.txt"
+            style="extract_toc_references.xsl"> </xslt>
+    </target>
+    
+    <target name="preprocess_fltoc">
+        <xslt in="target/${deliverable_folder}-temp.fltoc" out="target/${deliverable_folder}.fltoc"
+            style="update_title_in_toc.xsl"> </xslt>
+    </target>
+    
+    <target name="copy_variable_definitions">
+        <copy file="Project/VariableSets/Variables.flvar" tofile="./Variables.flvar"></copy>
+    </target>
+    
+    <target name="copy_csh_map">
+        <copy file="Project/Advanced/CSH/AliasFile.flali" tofile="target/AliasFile.flali"></copy>
+    </target>
+    
+</project>

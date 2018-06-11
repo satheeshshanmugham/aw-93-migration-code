@@ -1,0 +1,119 @@
+PREPROCESS
+===========
+
+FIX EMPTY TITLE TAG in Metadata for the following file:
+----------------------------------------------------------
+Example: GUID-AW92-Sideload_Agent
+
+Fix by resolving snippet manually.
+
+Fix missing titles in FLTOC file:
+---------------------------------
+Transform .fltoc file using update_title_in_toc.xsl.
+This XSLT will add an attribute called @NewTitle to all TocEntry elements fetching title information from the respective source files.
+
+Manually verify NewTitle in FLTOC:
+-------------------------------------
+GUID-AW92-Sideload_Agent
+
+Fix incorrect alerts:
+----------------------
+Replace <b>Note</b>: with <b>Note:</b>
+Replace <b>Important</b>: with <b>Important:</b>
+Replace <b>Caution</b>: with <b>Caution:</b>
+
+
+Manually resolve snippet references inside snippet:
+-----------------------------------------------------
+Search for .flsnp in all snippet files and manually resolve them by copy pasting
+
+INCORRECT CONTENT INSIDE <body> inside Snippets
+--------------------------------------------------
+Search inside snippets with REGEX
+<body>[a-z]
+
+Manually fix MISSING snippet file:
+---------------------------------
+\Content\Expert Guides\EI\Content_Gateway\R\CG_Requirements_Linux.htm
+
+MISSING Title for the following files:
+--------------------------------------
+\Content\Expert Guides\Email_Config Guides\Mobile Flows\Admin Guide\R\MF_Admin_FAQ.htm
+\Content\Expert Guides\Email_Config Guides\ENS V2\R\R_Architecture_FAQ.htm
+
+Remove "on page 1" xref manually:
+-------------------------------------
+\Content\Expert Guides\EI\AW_Tunnel\R\UsingProxyTool.htm
+
+FIX incorrect hyperlink to PNG:
+----------------------------------
+\Content\Expert Guides\Apple_School_Mgr\T\LinktoASM.htm
+
+
+Multiple <body> tags in the following files:
+--------------------------------------------
+\Content\Platform Guides\Android\C\Auto Enroll Concept.htm
+\Content\Platform Guides\Chrome OS\T\Profile(Device)_Kiosk.htm
+\Content\Expert Guides\Remote_Management\!T\AgntConfig_OSX.htm
+
+Special character & in filename:
+-----------------------------------
+\Content\Platform Guides\Tizen\R\OS & Requirements.htm
+
+Delete stray "'..\..\..\Resources\MasterPages\OtherTopics__Android.flmsp');">" in the following files:
+------------------------------------------------------------------------------------------------------------
+\Content\Platform Guides\Android\T\AndroidProfileEmail.htm
+\Content\Platform Guides\Android\C\Email_Autodiscovery.htm   
+\Content\Platform Guides\Android\C\Enroll_Android.htm
+\Content\Platform Guides\Android\C\Enrollment Restrictions.htm
+\Content\Platform Guides\Android\C\OEMServiceApp.htm
+\Content\Platform Guides\Android\C\Sideload.htm
+\Content\Platform Guides\Android\R\Enrollment Requirements.htm
+\Content\Platform Guides\Android\R\LauncherVersion.htm
+\Content\Platform Guides\Android\R\Matrix_Overviews.htm
+\Content\Platform Guides\Android\R\restrictions_reference.htm
+\Content\Platform Guides\Android\R\Samsung_Matrix.htm
+
+
+Fix MadCap::annotation
+-----------------------
+Look for annotation tags and handle them.
+
+
+OBSERVATIONS
+============
+
+SPOT FIXES MADE:
+--------------------
+Graphics:
+https://docs-staging.vmware.com/en/VMware-AirWatch/9.3/vmware-airwatch-guides-93/GUID-AW93-AdminConsoleMainMenu.html
+
+Disable conditions:
+https://docs-staging.vmware.com/en/VMware-AirWatch/9.3/vmware-airwatch-guides-93/GUID-AW93-Requirements_ENS-V2.html
+https://docs-staging.vmware.com/en/VMware-AirWatch/9.3/vmware-airwatch-guides-93/GUID-AW93-Apps_Browser.html
+
+Missing TOC label:
+https://docs-staging.vmware.com/en/VMware-AirWatch/9.3/vmware-airwatch-guides-93/GUID-AW93-ENSV2_API_Endpoints.html
+
+Code formatting:
+https://docs-staging.vmware.com/en/VMware-AirWatch/9.3/vmware-airwatch-guides-93/GUID-AW93-Install-Check-Script.html 
+https://docs-staging.vmware.com/en/VMware-AirWatch/9.3/vmware-airwatch-guides-93/GUID-AW93-Receipts.html
+
+
+
+
+
+Check this file for OL continuity:
+-------------------------------------
+C:\Techpubs\AirWatch\3 Production\9.1\Content\Resources\Snippets\FS_RFS_Config.flsnp
+
+
+
+Missing Files in Output:
+---------------------------------
+\Content\Expert Guides\EI\Content_Gateway\R\CG_Requirements_Linux.htm
+Issue:- <MadCap:snippetBlock src="../Skip_Req_CG.flsnp" /> is not found
+
+MadCap::annotation present
+---------------------------
+Look for annotation tags and handle them.

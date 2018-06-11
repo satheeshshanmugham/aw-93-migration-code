@@ -1,0 +1,376 @@
+<?xml version = "1.0"?>
+<project name="AirWatch Migration" default="all" basedir=".">
+	<property file="build.properties"/>
+	
+	<target name="all"
+		depends="read_toc,				
+		read_toc_for_metadata, extract_html, extract_missing_xref_files,
+		update_conrefs, read_images, copy_all_images,
+		add_metadata, update_image_references, update_image_references_once_more, 
+		prefix_guid, replace_space,
+		extract_meta_info, read_xrefs, report_missing_xref_files,
+		generate_metadata_info_xml, generate_index_html, generate_toc_xml, generate_csh_xml,
+		copy_css_and_images,
+		create_zip_package, create_md5_hash"/>
+
+	<!--<target name="all"
+		depends="read_toc,				
+		read_toc_for_metadata, extract_html, update_conrefs, read_images, copy_all_images,
+		add_metadata, update_image_references, update_image_references_once_more, 
+		prefix_guid, replace_space, replace_underscore,
+		extract_meta_info"/>-->
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${basedir}/ant-lib/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+	
+
+	<target name="read_toc">
+		<xslt in="target/${deliverable_folder}.fltoc" out="target/files.txt"
+			style="extract_toc_references.xsl"> </xslt>
+	</target>
+	
+	
+
+	<target name="read_toc_for_metadata">
+		<xslt in="target/${deliverable_folder}.fltoc" out="target/files-list-metadata.txt"
+			style="extract_toc_references_for_metadata.xsl">
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+	</target>
+
+	<target name="extract_html">
+		<loadfile property="textFile" srcfile="target/files.txt"/>
+		<for param="line" list="${textFile}" delimiter="${line.separator}">
+			<sequential>
+				<if>
+					<available file="${basedir}@{line}"/>
+					<then>
+						<!--<echo message="@{line}"/>-->
+						<copy file="${basedir}@{line}" todir="target/temp_extracted"/>
+					</then>
+					<else>
+						<echo file="target/${deliverable_folder}_MISSING_FILES_main.txt" append="true"
+							>${basedir}@{line}&#xa;</echo>
+					</else>
+				</if>
+			</sequential>
+		</for>
+	</target>
+	
+	<target name="extract_missing_xref_files">
+		<loadfile property="xref_textFile" srcfile="missing_xref_files_93.txt"/>
+		<for param="line" list="${xref_textFile}" delimiter="${line.separator}">
+			<sequential>
+				<if>
+					<available file="${basedir}@{line}"/>
+					<then>
+						<!--<echo message="@{line}"/>-->
+						<copy file="${basedir}@{line}" todir="target/temp_extracted"/>
+					</then>
+					<else>
+						<echo file="target/${deliverable_folder}_MISSING_FILES_xrefs.txt" append="true"
+							>${basedir}@{line}&#xa;</echo>
+					</else>
+				</if>
+			</sequential>
+		</for>
+	</target>
+	
+	<target name="update_conrefs">
+		<xslt failonerror="no"		 	
+		 basedir="target/temp_extracted" includes="**/*.htm"
+		 destdir="target/temp_updated_conrefs"
+		 style="update_conrefs.xsl" 
+		 ></xslt>
+	</target>
+
+	<target name="read_images">
+		<xslt classpath="lib/saxon9ee.jar" basedir="target/temp_updated_conrefs"
+			destdir="target/temp_image_references" extension=".txt"
+			style="extract_image_references.xsl"> </xslt>
+
+		<concat destfile="target/images-list.txt" force="no">
+			<fileset dir="target/temp_image_references/" includes="*.txt"/>
+		</concat>
+
+	</target>
+
+	<target name="copy_all_images">
+		<loadfile property="imagelist" srcfile="target/images-list.txt"/>
+		<for param="line" list="${imagelist}" delimiter="${line.separator}">
+			<sequential>
+				<if>
+					<available file="${basedir}@{line}"/>
+					<then>
+						<!--<echo message="@{line}"/>-->
+						<copy file="${basedir}@{line}" todir="target/temp_extracted_images"/>
+					</then>
+					<else>
+						<echo file="target/${deliverable_folder}_MISSING_IMAGES.txt"
+							>${basedir}@{line}&#xa;</echo>
+					</else>
+				</if>
+			</sequential>
+		</for>
+	</target>
+
+
+	<target name="add_metadata">
+		<xslt classpath="lib/saxon9ee.jar" basedir="target/temp_updated_conrefs"
+			destdir="target/temp_renamed_extension" extension=".html"
+			style="add_metadata_to_html.xsl">
+			<param name="deliverable_name" expression="${deliverable_folder}"/>
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+		<echo>${deliverable_folder}</echo>
+		
+		<!--<delete dir="target/temp_extracted/"/>-->
+		<!--<delete file="target/files.txt"></delete>-->
+		
+	</target>
+
+	<target name="update_image_references">
+		<xslt classpath="lib/saxon9ee.jar" basedir="target/temp_renamed_extension"
+			destdir="target/temp_updated_image_path_1" extension=".html"
+			style="update_image_references.xsl">
+			
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+		
+		<delete dir="target/temp_renamed_extension/"/>
+		
+	</target>
+	
+	<target name="update_image_references_once_more">
+		<xslt classpath="lib/saxon9ee.jar" basedir="target/temp_updated_image_path_1"
+			destdir="target/temp_updated_image_path" extension=".html"
+			style="update_image_references_once_more.xsl">
+			
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+		
+		<delete dir="target/temp_renamed_extension/"/>
+		
+	</target>
+
+	<target name="prefix_guid">
+		<move todir="target/${deliverable_folder}-prefix-guid" includeemptydirs="false">
+			<fileset dir="target/temp_updated_image_path">
+				<include name="**/*.html"/>
+			</fileset>
+			<mapper type="glob" from="*" to="${filename_guid_prefix}-*"/>
+		</move>
+		
+		<delete dir="target/temp_updated_image_path/"/>
+
+	</target>
+	
+	<target name="replace_space">
+		<move todir="target/${deliverable_folder}" includeemptydirs="false">
+			<fileset dir="target/${deliverable_folder}-prefix-guid">
+				<include name="**/*.html"/>
+			</fileset>
+			<filtermapper>
+				<replacestring from=" " to="_"/>
+				<replacestring from=" " to="_"/>
+			</filtermapper>
+		</move>
+		
+		<delete dir="target/${deliverable_folder}-prefix-guid/"/>
+		
+	</target>
+	
+	<!--<target name="replace_underscore">
+		<move todir="target/${deliverable_folder}" includeemptydirs="false">
+			<fileset dir="target/${deliverable_folder}-replaced-space">
+				<include name="**/*.html"/>
+			</fileset>
+			<filtermapper>
+				<replacestring from="_" to="-"/>
+			</filtermapper>
+		</move>
+	</target>-->
+	
+	<target name="read_xrefs">
+		<xslt classpath="lib/saxon9ee.jar" basedir="target/${deliverable_folder}"
+			destdir="target/temp_extracted_xref" extension=".html" style="extract_xref_references.xsl" failonerror="yes">			
+		</xslt>
+		
+		<concat destfile="target/${deliverable_folder}/xref-list.txt">
+			<fileset dir="target/temp_extracted_xref"></fileset>			
+		</concat>
+		
+	</target>
+	
+	<target name="report_missing_xref_files">
+		<loadfile property="xrefFile" srcfile="target/${deliverable_folder}/xref-list.txt"/>
+		<for param="line" list="${xrefFile}" delimiter="${line.separator}">
+			<sequential>
+				<if>
+					<available file="target/${deliverable_folder}/@{line}"/>
+					<then>
+						<!--<echo message="@{line}"/>-->
+						<copy file="target/${deliverable_folder}/@{line}" todir="target/temp_xrefs_extracted"/>
+					</then>
+					<else>
+						<echo file="target/${deliverable_folder}_MISSING_XREF_FILES.txt" append="true"
+							>@{line}&#xa;</echo>
+					</else>
+				</if>
+			</sequential>
+		</for>
+	</target>
+	
+
+	<target name="extract_meta_info">
+		<xslt classpath="lib/saxon9ee.jar" basedir="target/${deliverable_folder}"
+			destdir="target/temp_extracted_meta" extension=".html" style="read_file_metadata.xsl" failonerror="yes">
+			<param name="deliverable_name" expression="${deliverable_folder}"/>
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+
+		<echo file="target/${deliverable_folder}/header.txt" append="true">
+			<![CDATA[
+	<topics>]]>
+		</echo>
+
+		<echo file="target/${deliverable_folder}/footer.txt" append="true">
+			<![CDATA[
+	</topics>]]>
+		</echo>
+
+		<!-- Code to concat files in TOC order -->
+
+		<!--<loadfile property="file_list_metadata" srcFile="target/files-list-metadata.txt">
+			<filterchain>
+				<suffixlines suffix=", "/>
+				<striplinebreaks/>
+			</filterchain>
+		</loadfile>-->
+
+		<concat destfile="target/${deliverable_folder}/metadata_info_temp.xml" fixlastline="yes">
+			<file file="target/${deliverable_folder}/header.txt"/>
+			<!--<filelist dir="target/temp_extracted_meta/" files="${file_list_metadata}"/>-->
+			<fileset dir="target/temp_extracted_meta"></fileset>
+			<file file="target/${deliverable_folder}/footer.txt"/>
+		</concat>
+
+		<delete dir="target/temp_extracted_meta/"/>
+		<delete file="target/${deliverable_folder}/header.txt"/>
+		<delete file="target/${deliverable_folder}/footer.txt"/>
+		<delete file="target/files-list-metadata.txt"/>
+
+	</target>
+
+
+
+	<target name="generate_metadata_info_xml">
+		<xslt classpath="lib/saxon9ee.jar" in="target/${deliverable_folder}/metadata_info_temp.xml"
+			out="target/${deliverable_folder}/metadata_info_1.xml"
+			style="generate_metadata_info_xml.xsl">
+
+			<param name="deliverable_name" expression="${deliverable_folder}"/>
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+
+		<delete file="target/${deliverable_folder}/metadata_info_temp.xml"/>
+		
+		<xslt classpath="lib/saxon9ee.jar" in="target/${deliverable_folder}/metadata_info_1.xml"
+			out="target/${deliverable_folder}/metadata_info.xml"
+			style="update_opening_topic.xsl">
+			
+			<param name="opening_topic" expression="${opening_topic}"/>
+			
+		</xslt>
+		
+		<delete file="target/${deliverable_folder}/metadata_info_1.xml"/>
+		
+	</target>
+
+	<target name="generate_index_html">
+		<xslt classpath="lib/saxon9ee.jar" in="target/${deliverable_folder}.fltoc"
+			out="target/${deliverable_folder}/index.html" style="generate_index_html.xsl">
+			<param name="deliverable_name" expression="${deliverable_folder}"/>
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+
+	</target>
+
+	<target name="generate_toc_xml">
+		<xslt classpath="lib/saxon9ee.jar" in="target/${deliverable_folder}.fltoc"
+			out="target/${deliverable_folder}/toc.xml" style="generate_toc_xml_aw.xsl">
+			<param name="deliverable_name" expression="${deliverable_folder}"/>
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+		</xslt>
+
+	</target>
+	
+	<target name="generate_csh_xml">
+		<xslt in="target/AliasFile.flali" out="target/${deliverable_folder}/context.xml"
+			style="generate_csh_xml.xsl"> 
+			
+			<param name="deliverable_name" expression="${deliverable_folder}"/>
+			<param name="filename_guid_prefix" expression="${filename_guid_prefix}"/>
+			
+		</xslt>
+		
+	</target>
+
+	<target name="copy_css_and_images">
+		<move todir="target/${deliverable_folder}/images">
+			<fileset dir="target/temp_extracted_images"/>
+		</move>
+		<copy file="commonltr.css" todir="target/${deliverable_folder}"/>
+		<copy file="commonrtl.css" todir="target/${deliverable_folder}"/>
+		
+		<!--<move file="target/context.xml" todir="target/${deliverable_folder}"/>-->
+
+		<delete dir="target/temp_extracted_images"/>
+		<delete dir="target/temp_image_references"/>
+		<delete file="target/images-list.txt"/>
+		<!--<delete dir="target/temp_updated_conrefs/"></delete>-->
+		<delete dir="target/temp_updated_image_path_1/"></delete>
+		<delete file="target/${deliverable_folder}/xref-list.txt"/>
+	</target>
+
+	<target name="validate_output">
+		<xmlvalidate failonerror="no" lenient="yes" warn="yes"
+			classname="org.apache.xerces.parsers.SAXParser"
+			classpath="${basedir}/ant-lib/xercesImpl-2.4.0.jar">
+			<fileset dir="target/${deliverable_folder}" excludes="**/*.css, **/*.png"/>
+		</xmlvalidate>
+	</target>
+
+	<target name="create_zip_package">
+		<zip destfile="target/${deliverable_folder}/package/${deliverable_folder}.zip"
+			basedir="target/${deliverable_folder}" update="true"> </zip>
+	</target>
+
+	<target name="create_md5_hash">
+		<checksum file="target/${deliverable_folder}/package/${deliverable_folder}.zip"
+			algorithm="MD5"/>
+		<loadfile property="md5_hash_value"
+			srcfile="target/${deliverable_folder}/package/${deliverable_folder}.zip.MD5"/>
+		<echo>${deliverable_folder}.zip.MD5</echo>
+		<for param="line" list="${md5_hash_value}" delimiter="${line.separator}">
+			<sequential>
+				<echo message="@{line}"/>
+				<echo file="target/${deliverable_folder}/package/@{line}.md5"
+					>/publications/html5/${deliverable_folder}.zip&#xa;</echo>
+			</sequential>
+		</for>
+		<delete file="target/${deliverable_folder}/package/${deliverable_folder}.zip.MD5"/>
+	</target>
+
+	<target name="upload_to_cdf_dropbox">
+		<scp
+			remotetodir="sshanmugham:password@10.127.33.106:/opt/contentstore/dropbox/publications/html5"
+			sftp="true" trust="true">
+			<fileset dir="target/${deliverable_folder}/package"/>
+		</scp>
+	</target>
+
+</project>

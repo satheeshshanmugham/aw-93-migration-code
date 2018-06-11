@@ -1,0 +1,68 @@
+<?xml version = "1.0"?>
+<project name="AirWatch Migration" default="all" basedir=".">
+	<property file="build.properties"/>
+	
+	<!--<target name="all"
+		depends="fix_nested_snippets, update_nested_conrefs,
+		copy_and_read_toc, preprocess_fltoc
+		"/>-->
+
+<!--	<target name="all"
+		depends="fix_nested_snippets, update_nested_conrefs
+		
+		"/>	-->
+	
+	<target name="all"
+		depends="copy_and_read_toc, preprocess_fltoc"/>
+	
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${basedir}/ant-lib/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+	
+	<target name="fix_nested_snippets">
+		<copy todir="Content/Resources/Snippets-temp/" flatten="true">
+			<fileset dir="Content/Resources/Snippets/">
+				<include name="**/*.flsnp"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="update_nested_conrefs">
+		<xslt failonerror="no"		 	
+			basedir="Content/Resources/Snippets-temp/" includes="**/*.flsnp"
+			destdir="Content/Resources/Snippets-fixed/"
+			style="update_nested_conrefs.xsl"
+			/>
+		
+			
+		<move todir="Content/Resources/Snippets-fixed/" includeemptydirs="false">
+			<fileset dir="Content/Resources/Snippets-fixed/">
+				<include name="**/*.html"/>
+			</fileset>
+			<mapper type="glob" from="*.html" to="*.flsnp"/>
+		</move>
+		
+		<delete dir="Content/Resources/Snippets-temp/" />
+		
+	</target>
+	
+	
+	<target name="copy_and_read_toc">
+		
+		<copy file="Build Copy of Help TOC.fltoc" tofile="target/${deliverable_folder}-temp.fltoc"></copy>
+		
+		<xslt in="target/${deliverable_folder}-temp.fltoc" out="target/files.txt"
+			style="extract_toc_references.xsl"> </xslt>
+	</target>
+	
+	<target name="preprocess_fltoc">		
+		
+		<xslt in="target/${deliverable_folder}-temp.fltoc" out="target/${deliverable_folder}.fltoc"
+			style="update_title_in_toc.xsl"> </xslt>	
+		
+	</target>
+
+</project>

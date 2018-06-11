@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deliverables>
+    <deliverable name="VMware_AirWatch_9.3">
+        <publication_name>VMware AirWatch 9.3 Online Help</publication_name>
+        <publication_guid>GUID-APR2018-VMWARE-AIRWATCH-GUIDES-93</publication_guid>
+        <publication_cms_title>VMware AirWatch 9.3 Online Help</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.3</product_version>
+        <output_file_name_html>vmware-airwatch-guides-93</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable> 
+    
+    <deliverable name="Console_Basics">
+        <publication_name>Console Basics</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-CONSOLE-BASICS</publication_guid>
+        <publication_cms_title>Console Basics</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-console-basics</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Accounts">
+        <publication_name>Accounts</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-ACCOUNTS</publication_guid>
+        <publication_cms_title>Accounts</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-accounts</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Enrollment">
+        <publication_name>Enrollment</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-ENROLLMENT</publication_guid>
+        <publication_cms_title>Enrollment</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-enrollment</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Devices">
+        <publication_name>Devices</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-DEVICES</publication_guid>
+        <publication_cms_title>Devices</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-devices</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Profiles">
+        <publication_name>Profiles</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-PROFILES</publication_guid>
+        <publication_cms_title>Profiles</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-profiles</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Apps">
+        <publication_name>Apps</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-APPS</publication_guid>
+        <publication_cms_title>Apps</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-apps</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Content">
+        <publication_name>Content</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-CONTENT</publication_guid>
+        <publication_cms_title>Content</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-content</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Email">
+        <publication_name>Email</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-EMAIL</publication_guid>
+        <publication_cms_title>Email</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-email</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Settings">
+        <publication_name>Settings</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-SETTINGS</publication_guid>
+        <publication_cms_title>Settings</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-settings</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Integrations">
+        <publication_name>Integrations</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-INTEGRATIONS</publication_guid>
+        <publication_cms_title>Integrations</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-integrations</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Architecture">
+        <publication_name>Architecture</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-ARCHITECTURE</publication_guid>
+        <publication_cms_title>Architecture</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-architecture</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+    
+    <deliverable name="Developer">
+        <publication_name>Developer</publication_name>
+        <publication_guid>GUID-03152018-VMWARE-AIRWATCH-DEVELOPER</publication_guid>
+        <publication_cms_title>Developer</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-developer</output_file_name_html>
+        <output_file_name_pdf></output_file_name_pdf>
+    </deliverable>
+
+
+    <deliverable name="ENS V2 ManualInstall_TOC">
+        <publication_name>VMware AirWatch Email Notification Service Guide 9.2</publication_name>
+        <publication_guid>GUID-BBBB5678-12CC-34DD-56EE-ENS</publication_guid>
+        <publication_cms_title>VMware AirWatch Email Notification Service Guide 9.2</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-ens-guide-92</output_file_name_html>
+        <output_file_name_pdf>pdf-aw-ens-guide-92</output_file_name_pdf>
+    </deliverable>
+    <deliverable name="Database Migration">
+        <publication_name>VMware Database Migration Guide 9.2</publication_name>
+        <publication_guid>GUID-BBBB5678-12DD-34FF-56GG-DBM</publication_guid>
+        <publication_cms_title>VMware Database Migration Guide 9.2</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-dm-guide-92</output_file_name_html>
+        <output_file_name_pdf>pdf-aw-dm-guide-92</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="SSP_EUG">
+        <publication_name>VMware AirWatch Self Service Portal EU Guide 9.2</publication_name>
+        <publication_guid>GUID-BBBB5678-12DD-34FF-56GG-EUG</publication_guid>
+        <publication_cms_title>VMware AirWatch Self Service Portal EU Guide 9.2</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-ssp-eug-guide-92</output_file_name_html>
+        <output_file_name_pdf>pdf-aw-ssp-eug-guide-92</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="AW_Tizen_TOC">
+        <publication_name>VMware AirWatch Tizen Guide 9.2</publication_name>
+        <publication_guid>GUID-BBBB5678-12DD-34FF-56GG-TZN</publication_guid>
+        <publication_cms_title>VMware AirWatch Tizen Guide 9.2</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-tzn-guide-92</output_file_name_html>
+        <output_file_name_pdf>pdf-aw-tzn-guide-92</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="AppVolumes_Int_TOC">
+        <publication_name>VMware AirWatch and AppVolumes Integration Guide 9.2</publication_name>
+        <publication_guid>GUID-BBBB5678-12DD-34FF-56GG-APP</publication_guid>
+        <publication_cms_title>VMware AirWatch and AppVolumes Integration Guide 9.2</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-app-int-guide-92</output_file_name_html>
+        <output_file_name_pdf>pdf-aw-app-int-guide-92</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="Android_SDK_Guide">
+        <publication_name>VMware AirWatch Android SDK Guide 9.2</publication_name>
+        <publication_guid>GUID-BBBB5678-12DD-34FF-ANDROID-SDK</publication_guid>
+        <publication_cms_title>VMware AirWatch Android SDK Guide 9.2</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-android-sdk-guide-92</output_file_name_html>
+        <output_file_name_pdf>pdf-aw-android-sdk-guide-92</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="AirWatch_Browser_Guide_TOC">
+        <publication_name>VMware AirWatch Browser Guide 9.2</publication_name>
+        <publication_guid>GUID-011-VMWARE-AIRWATCH-BROWSER-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Browser Guide 9.2</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-browser-guide-92</output_file_name_html>
+        <output_file_name_pdf>VMware Browser Admin Guide v9_2</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="MAM_Guide_TOC">
+        <publication_name>VMware AirWatch Mobile Application Management</publication_name>
+        <publication_guid>GUID-012-VMWARE-AIRWATCH-MAM-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Mobile Application Management</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-mam-guide-92</output_file_name_html>
+        <output_file_name_pdf>Mobile Application Management Guide v9_1</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="MCM_Guide_TOC">
+        <publication_name>VMware AirWatch Mobile Content Management</publication_name>
+        <publication_guid>GUID-013-VMWARE-AIRWATCH-MCM-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Mobile Content Management</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-mcm-guide-92</output_file_name_html>
+        <output_file_name_pdf>Mobile Content Management Guide v9_2</output_file_name_pdf>        
+    </deliverable>
+    <deliverable name="MDM_Guide_TOC">
+        <publication_name>VMware AirWatch Mobile Device Management</publication_name>
+        <publication_guid>GUID-014-VMWARE-AIRWATCH-MDM-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Mobile Device Management</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-mdm-guide-92</output_file_name_html>
+        <output_file_name_pdf>Mobile Device Management Guide v9_2</output_file_name_pdf>
+    </deliverable>
+    <deliverable name="MEM_Guide_TOC">
+        <publication_name>VMware AirWatch Mobile Email Management</publication_name>
+        <publication_guid>GUID-215-VMWARE-AIRWATCH-MEM-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Mobile Email Management</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-mem-guide-92-02282018</output_file_name_html>
+        <output_file_name_pdf>VMware AirWatch Mobile Email Management Guide v9_2</output_file_name_pdf>
+    </deliverable>
+    <deliverable name="Directory_Services_TOC">
+        <publication_name>VMware AirWatch Directory Services</publication_name>
+        <publication_guid>GUID-016-VMWARE-AIRWATCH-DS-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Directory Services</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-ds-guide-92</output_file_name_html>
+        <output_file_name_pdf>VMware AirWatch Directory Services Guide v9_1</output_file_name_pdf>
+    </deliverable>
+    <deliverable name="BYOD_Guide_TOC">
+        <publication_name>VMware AirWatch Bring You Own Device</publication_name>
+        <publication_guid>GUID-017-VMWARE-AIRWATCH-BYOD-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Bring You Own Device</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-byod-guide-92</output_file_name_html>
+        <output_file_name_pdf>VMware AirWatch BYOD Guide v9_2</output_file_name_pdf>
+    </deliverable>
+    <deliverable name="System_Settings_TOC">
+        <publication_name>VMware AirWatch System Settings Reference Manual</publication_name>
+        <publication_guid>GUID-018-VMWARE-AIRWATCH-SYSTEM-SETTINGS</publication_guid>
+        <publication_cms_title>VMware AirWatch System Settings Reference Manual</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-systems-settings-guide-92</output_file_name_html>
+        <output_file_name_pdf>VMware AirWatch System Settings Reference Manual for On Premises v9_2</output_file_name_pdf>
+    </deliverable>
+    <deliverable name="VMware_Boxer_Guide_DITA">
+        <publication_name>VMware AirWatch Boxer Guide</publication_name>
+        <publication_guid>GUID-018-VMWARE-AIRWATCH-BOXER-GUIDE</publication_guid>
+        <publication_cms_title>VMware AirWatch Boxer Guide</publication_cms_title>
+        <product_name>VMware AirWatch</product_name>
+        <product_version>9.2</product_version>
+        <output_file_name_html>aw-boxer-guide-92</output_file_name_html>
+        <output_file_name_pdf>pdf-aw-boxer-guide-92</output_file_name_pdf>
+    </deliverable>
+</deliverables>
